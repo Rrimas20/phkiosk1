@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=1080, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>صحتنا · كايوسك صيدلية النهدي</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,8 +27,8 @@
   --text-mute: #6B7280;
 }
 html, body {
-  width: 1080px;
-  height: 1920px;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
   font-family: 'Tajawal', sans-serif;
   background: var(--bg);
@@ -42,8 +42,8 @@ html, body {
 #kiosk-root {
   background: var(--bg);
   position: relative;
-  width: 1080px;
-  height: 1920px;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -139,7 +139,7 @@ html, body {
 .kk-main {
   position: relative;
   width: 100%;
-  height: 1920px;
+  height: 100vh;
 }
 .kk-screen {
   display: none;
@@ -148,7 +148,7 @@ html, body {
   justify-content: center;
   padding: 110px 20px 40px;  /* top padding accounts for the floating header */
   width: 100%;
-  height: 1920px;             /* full kiosk height — true vertical center */
+  height: 100vh;             /* full kiosk height — true vertical center */
   animation: kk-fade .35s ease;
 }
 .kk-screen.active { display: flex; }
@@ -1437,6 +1437,56 @@ html, body {
   margin-bottom: 18px;
 }
 
+/* ===== WALLET HINT (NFC screen) ===== */
+.kk-nfc-wallet-hint {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #EFF6FF;
+  border: 1.5px solid #BFDBFE;
+  border-radius: 14px;
+  padding: 16px 20px;
+  max-width: 520px;
+  margin-top: 28px;
+  font-size: 15px;
+  color: #1E40AF;
+  line-height: 1.55;
+  text-align: right;
+}
+.kk-nfc-wallet-hint svg {
+  width: 20px;
+  height: 20px;
+  color: #3B82F6;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.kk-nfc-wallet-hint b { color: #1D4ED8; }
+
+/* ===== OPTION HINT (options screen — inside option card) ===== */
+.kk-option-hint {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: rgba(59,130,246,.1);
+  border: 1px solid rgba(59,130,246,.25);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: #1E40AF;
+  line-height: 1.5;
+  text-align: right;
+  width: 100%;
+  margin-top: 4px;
+}
+.kk-option-hint svg {
+  width: 14px;
+  height: 14px;
+  color: #3B82F6;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.kk-option-hint b { color: #1D4ED8; }
+
 /* ============================================================
    RESPONSIVE
    ============================================================ */
@@ -1541,6 +1591,10 @@ html, body {
           </div>
           <div class="kk-option-title">قرّب الجوال</div>
           <div class="kk-option-sub">Apple Wallet أو Google Wallet — لمسة واحدة وتدخل</div>
+          <div class="kk-option-hint">
+            <svg viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.13,104.13,0,0,0,128,24Zm-4,48a12,12,0,1,1-12,12A12,12,0,0,1,124,72Zm12,112a16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40a8,8,0,0,1,0,16Z"/></svg>
+            لاستخدام الهوية الصحية الإلكترونية: اضغط زر الجانب <b>مرتين</b> لفتح المحفظة ثم قرّب الجوال
+          </div>
         </button>
         <button class="kk-option" id="opt-id">
           <div class="kk-option-icon">
@@ -1570,6 +1624,14 @@ html, body {
       </div>
       <h2>قرّب جوالك من القارئ</h2>
       <p>...يتم قراءة البطاقة</p>
+      <div class="kk-nfc-wallet-hint">
+        <svg viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.13,104.13,0,0,0,128,24Zm-4,48a12,12,0,1,1-12,12A12,12,0,0,1,124,72Zm12,112a16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40a8,8,0,0,1,0,16Z"/></svg>
+        <span>للهوية الصحية الإلكترونية في <b>Apple Wallet</b> أو <b>Google Wallet</b>: اضغط زر الجانب <b>مرتين</b> أولاً لتفعيل البطاقة، ثم قرّب الجوال</span>
+      </div>
+      <button class="kk-cancel-link" data-back="options" style="margin-top:32px;">
+        <svg viewBox="0 0 256 256" fill="currentColor"><path d="M168.49,199.51a12,12,0,0,1-17,17l-80-80a12,12,0,0,1,0-17l80-80a12,12,0,0,1,17,17L97,128Z"/></svg>
+        تراجع
+      </button>
     </section>
 
     <!-- 4) ID ENTRY -->
@@ -1593,6 +1655,10 @@ html, body {
         <button class="kk-key" data-key="0">0</button>
         <button class="kk-key submit" data-key="submit" id="id-submit" disabled>تم</button>
       </div>
+      <button class="kk-cancel-link" data-back="options" style="margin-top:24px;">
+        <svg viewBox="0 0 256 256" fill="currentColor"><path d="M168.49,199.51a12,12,0,0,1-17,17l-80-80a12,12,0,0,1,0-17l80-80a12,12,0,0,1,17,17L97,128Z"/></svg>
+        تراجع
+      </button>
     </section>
 
     <!-- 5) VERIFYING -->
